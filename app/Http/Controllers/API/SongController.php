@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Song\StoreSongRequest;
 use App\Models\Song;
 use App\Models\User;
+use App\Services\SongService;
 
 class SongController extends Controller
 {
@@ -15,27 +16,29 @@ class SongController extends Controller
      * @param  \App\Http\Requests\Song\StoreSongRequest  $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(StoreSongRequest $request)
+    public function store(StoreSongRequest $request, SongService $songService)
     {
         try{
-            $file = $request->file;
+            // $file = $request->file;
 
-            if(empty($file)){
-                return response()->json('No song uploaded', 400);
-            }
+            // if(empty($file)){
+            //     return response()->json('No song uploaded', 400);
+            // }
 
-            $user = User::findOrFail($request->get('user_id'));
+            // $user = User::findOrFail($request->get('user_id'));
 
-            $song = $file->getClientOriginalName();
-            $file->move('songs/' . $user->id, $song);
+            // $song = $file->getClientOriginalName();
+            // $file->move('songs/' . $user->id, $song);
             
-            Song::create([
-                'user_id' => $request->get('user_id'),
-                'title' => $request->get('title'),
-                'song' => $song
-            ]);
+            // Song::create([
+            //     'user_id' => $request->get('user_id'),
+            //     'title' => $request->get('title'),
+            //     'song' => $song
+            // ]);
 
-            return response()->json('Song Saved!', 200);
+            // return response()->json('Song Saved!', 200);
+
+            return $songService->createSong($request);
         }catch(\Exception $e){
             return response()->json([
                 'message' => 'Something wrong in SongController.store',
@@ -51,17 +54,19 @@ class SongController extends Controller
      * @param int $user_id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy(int $id, int $user_id)
+    public function destroy(int $id, int $user_id, SongService $songService)
     {
         try{
-            $song =Song::findOrFail($id);
+            // $song =Song::findOrFail($id);
 
-            $currentSong = public_path() . "/songs/" . $user_id . "/" . $song->song;
-            if(file_exists($currentSong)){ unlink($currentSong); }
+            // $currentSong = public_path() . "/songs/" . $user_id . "/" . $song->song;
+            // if(file_exists($currentSong)){ unlink($currentSong); }
             
-            $song->delete();
+            // $song->delete();
 
-            return response()->json('Song deleted', 200);
+            // return response()->json('Song deleted', 200);
+
+            return $songService->deleteSong($id, $user_id);
         }catch(\Exception $e){
             return response()->json([
                 'message' => 'Something went wrong in SongController.destroy',
