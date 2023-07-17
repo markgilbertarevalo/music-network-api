@@ -87,4 +87,11 @@ class PostService
 
         return response()->json('Post deleted!', 200);
     }
+
+    public function fetchByUser($user_id)
+    {
+        $posts = Post::where('user_id', $user_id)->get();
+
+        return response()->json($posts, 200);
+    }
 }

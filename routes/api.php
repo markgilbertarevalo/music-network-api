@@ -31,11 +31,13 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('youtube/{user_id}', [\App\Http\Controllers\API\YoutubeController::class, 'show']);
     Route::delete('youtube/{id}', [\App\Http\Controllers\API\YoutubeController::class, 'destroy']);
 
-    Route::get('posts', [\App\Http\Controllers\API\PostsController::class, 'index']);
-    Route::get('posts/{id}', [\App\Http\Controllers\API\PostsController::class, 'show']);
-    Route::post('posts', [\App\Http\Controllers\API\PostsController::class, 'store']);
-    Route::put('posts/{id}', [\App\Http\Controllers\API\PostsController::class, 'update']);
-    Route::delete('posts/{id}', [\App\Http\Controllers\API\PostsController::class, 'destroy']);
+    // Route::get('posts', [\App\Http\Controllers\API\PostsController::class, 'index']);
+    // Route::get('posts/{id}', [\App\Http\Controllers\API\PostsController::class, 'show']);
+    // Route::post('posts', [\App\Http\Controllers\API\PostsController::class, 'store']);
+    // Route::put('posts/{id}', [\App\Http\Controllers\API\PostsController::class, 'update']);
+    // Route::delete('posts/{id}', [\App\Http\Controllers\API\PostsController::class, 'destroy']);
+
+    Route::apiResource('posts', \App\Http\Controllers\API\PostsController::class);
 
     Route::get('user/{user_id}/posts' ,[\App\Http\Controllers\API\PostsByUserController::class, 'show']);
 
