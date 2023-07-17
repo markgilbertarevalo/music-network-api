@@ -17,20 +17,6 @@ class SongsByUserController extends Controller
     public function index(int $user_id, SongService $songService)
     {
         try{
-            // $songs = [];
-            // $songs_by_user = Song::where('user_id', $user_id)->get();
-            // $user = User::find($user_id);
-
-            // foreach ($songs_by_user as $song) {
-            //     array_push($songs, $song);
-            // }
-
-            // return response()->json([
-            //     'artist_id' => $user_id,
-            //     'artist_name' => $user->first_name . ' ' . $user->last_name,
-            //     'songs' => $songs
-            // ], 200);
-
             return $songService->fetchSongByUser($user_id);
         }catch(\Exception $e){
             return response()->json([

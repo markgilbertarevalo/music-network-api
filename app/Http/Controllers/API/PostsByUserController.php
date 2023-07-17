@@ -18,10 +18,6 @@ class PostsByUserController extends Controller
     public function show(int $user_id, PostService $postService)
     {
         try{
-            // $posts = Post::where('user_id', $user_id)->get();
-
-            // return response()->json($posts, 200);
-
             return $postService->fetchByUser($user_id);
         }catch(\Exception $e){
             return response()->json([

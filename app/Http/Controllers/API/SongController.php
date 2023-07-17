@@ -19,25 +19,6 @@ class SongController extends Controller
     public function store(StoreSongRequest $request, SongService $songService)
     {
         try{
-            // $file = $request->file;
-
-            // if(empty($file)){
-            //     return response()->json('No song uploaded', 400);
-            // }
-
-            // $user = User::findOrFail($request->get('user_id'));
-
-            // $song = $file->getClientOriginalName();
-            // $file->move('songs/' . $user->id, $song);
-            
-            // Song::create([
-            //     'user_id' => $request->get('user_id'),
-            //     'title' => $request->get('title'),
-            //     'song' => $song
-            // ]);
-
-            // return response()->json('Song Saved!', 200);
-
             return $songService->createSong($request);
         }catch(\Exception $e){
             return response()->json([
@@ -57,15 +38,6 @@ class SongController extends Controller
     public function destroy(int $id, int $user_id, SongService $songService)
     {
         try{
-            // $song =Song::findOrFail($id);
-
-            // $currentSong = public_path() . "/songs/" . $user_id . "/" . $song->song;
-            // if(file_exists($currentSong)){ unlink($currentSong); }
-            
-            // $song->delete();
-
-            // return response()->json('Song deleted', 200);
-
             return $songService->deleteSong($id, $user_id);
         }catch(\Exception $e){
             return response()->json([

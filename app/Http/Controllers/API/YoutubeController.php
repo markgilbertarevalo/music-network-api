@@ -19,15 +19,6 @@ class YoutubeController extends Controller
     public function store(StoreYoutubeRequest $request, YoutubeService $youtubeService)
     {
         try{
-            // $yt = new Youtube;
-
-            // $yt->user_id = $request->get('user_id');
-            // $yt->title = $request->get('title');
-            // $yt->url = env("YT_EMBED_URL") . $request->get('url') . "?autoplay=0";
-
-            // $yt->save();
-
-            // return response()->json('New Youtube link saved.', 200);
             return $youtubeService->store($request);
         }catch(\Exception $e){
             return response()->json([
@@ -46,10 +37,6 @@ class YoutubeController extends Controller
     public function show(int $user_id, YoutubeService $youtubeService)
     {
         try{
-            // $videosByUser = Youtube::where('user_id', $user_id)->get();
-
-            // return response()->json(['videos_by_user' => $videosByUser], 200);
-
             return $youtubeService->show($user_id);
         }catch(\Exception $e){
             return response()->json([
@@ -68,11 +55,6 @@ class YoutubeController extends Controller
     public function destroy(int $id, YoutubeService $youtubeService)
     {
         try{
-            // $yt = Youtube::findOrFail($id);
-            // $yt->delete();
-
-            // return response()->json('Youtube Video deleted.', 200);
-
             return $youtubeService->destroy($id);
         }catch(\Exception $e){
             return response()->json([
