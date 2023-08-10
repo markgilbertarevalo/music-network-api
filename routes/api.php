@@ -22,7 +22,8 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('logout', [\App\Http\Controllers\API\AuthController::class, 'logout']);
 
     Route::get('users/{id}', [\App\Http\Controllers\API\UsersController::class, 'show']);
-    Route::put('users/{id}', [\App\Http\Controllers\API\UsersController::class, 'update']);
+    //Route::put('users/{id}', [\App\Http\Controllers\API\UsersController::class, 'update']);
+    Route::put('users', [\App\Http\Controllers\API\UsersController::class, 'update']);
 
     Route::post('songs', [\App\Http\Controllers\API\SongController::class, 'store']);
     Route::delete('songs/{id}/{user_id}', [\App\Http\Controllers\API\SongController::class, 'destroy']);

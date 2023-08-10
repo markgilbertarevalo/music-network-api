@@ -38,10 +38,11 @@ class UsersController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(UpdateUserRequest $request, int $id, UserService $userService)
+    public function update(UpdateUserRequest $request, UserService $userService)
     {
         try {
-            $user = $userService->fetchUser($id);
+            //$user = $userService->fetchUser($id);
+            $user = auth()->user();
             
             if($request->hasFile('image')){
                 (new ImageService)->updateImage($user, $request, '/images/users/', 'update');

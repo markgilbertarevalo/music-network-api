@@ -51,6 +51,12 @@ class PostService
     {
         $post = $this->fetchPost($id);
 
+        if(auth()->id() != $post['user_id'])
+        {   
+            $message = "Unauthenticated.";
+            return response()->json(['message' => $message], 401);
+        }
+
         if($request->hasFile('image')){
             (new ImageService)->updateImage($post, $request, '/images/posts/', 'update');
         }

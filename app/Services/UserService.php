@@ -9,10 +9,21 @@ use Auth;
 class UserService   
 {
     public function fetchUser(int $id)
-    {
+    {   
+        // if(Auth::id() == $id)
+        // {
+        //     $user = User::findOrFail($id);
+
+        //     return response()->json(['user' => $user], 200);
+        // }
+        // else{
+        //     $user = "Unauthenticated.";
+
+        //     return response()->json(['message' => $user], 200);
+        // }
         $user = User::findOrFail($id);
 
-        return $user;  
+        return $user;
     }
 
     public function updateData($request, $user)
